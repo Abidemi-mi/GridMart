@@ -1,15 +1,19 @@
 import type { Metadata } from "next";
-import { Inter, Geist } from "next/font/google";
+import { Inter} from "next/font/google";
 import "@/assets/styles/globals.css";
-import { cn } from "@/lib/utils";
+// import { cn } from "@/lib/utils";
+import { APP_DESCRIPTION, APP_NAME, SERVER_URL } from "@/lib/constants";
+import { ThemeProvider } from "next-themes";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
-
-const inter = Inter({subsets: ['latin']});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "ZYDLuxe",
-  description: "A modern ecommerce platfom built with Next.js",
+  title: {
+    template: `%s | GetMore`,
+    default: APP_NAME,
+  },
+  description: APP_DESCRIPTION,
+  metadataBase: new URL(SERVER_URL),
 };
 
 export default function RootLayout({
@@ -18,11 +22,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("font-sans", geist.variable)}>
-      <body
-        className={`${inter.className} antialiased`}
-      >
-        {children}
+    <html lang="en" suppressHydrationWarning >
+      <body className={`${inter.className} antialiased`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
