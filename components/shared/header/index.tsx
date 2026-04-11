@@ -15,16 +15,16 @@ const Header = () => {
             <Image
               src="/images/official-dark-logo.jpg"
               alt={`${APP_NAME} logo`}
-              width={50}
-              height={50}
+              width={48}
+              height={48}
               priority={true}
               className="hidden dark:block rounded-xl  "
             />
             <Image
               src="/images/official-light-logo.jpg"
               alt={`${APP_NAME} logo`}
-              width={50}
-              height={50}
+              width={48}
+              height={48}
               priority={true}
               className="block dark:hidden"
             />
