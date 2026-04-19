@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { getProductBySlug } from "@/lib/actions/product.action";
 import { notFound } from "next/navigation";
 import ProductPrice from "@/components/shared/products/product-price";
+import ProductImage from "@/components/shared/products/product-image";
 
 const ProductDetailsPage = async (props: {
   params: Promise<{ slug: string }>;
@@ -16,7 +17,11 @@ const ProductDetailsPage = async (props: {
       <section>
         <div className="grid grid-cols-1 md:grid-cols-5">
           {/* Image Colomn*/}
-          <div className="col-span-2">{/* Image Componet*/}</div>
+          <div className="col-span-2">
+            {/* Image Componet*/}
+            <ProductImage images={product.images}/>
+
+          </div>
           {/* Details Colomn*/}
           <div className="col-span-2 p-5">
             <div className="flex flex-col gap-6">

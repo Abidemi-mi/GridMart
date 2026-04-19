@@ -21,9 +21,13 @@ async function check() {
     console.log('DB Info:', res.rows[0]);
     await client.end();
   } catch (err) {
-    console.error('Connection failed:', err.message);
-    if (err.message.includes('TLS')) {
-      console.log('Suggestion: This looks like an SSL/TLS handshake issue with Neon.');
+    if (err instanceof Error) {
+      console.error('Connection failed:', err.message);
+      if (err.message.includes('TLS')) {
+        console.log('Suggestion: This looks like an SSL/TLS handshake issue with Neon.');
+      }
+    } else {
+      console.error('Connection failed with unknown error:', err);
     }
   }
 }
